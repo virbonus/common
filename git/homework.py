@@ -15,7 +15,7 @@ def is_two_object_has_same_value(first: Any, second: Any) -> bool:
     If @first and @second has same value should return True
     In another case should return False
     """
-    pass
+    return first == second
 
 
 def is_two_objects_has_same_type(first: Any, second: Any) -> bool:
@@ -23,15 +23,15 @@ def is_two_objects_has_same_type(first: Any, second: Any) -> bool:
     If @first and @second has same type should return True
     In another case should return False
     """
-    pass
+    return type(first) == type(second)
 
 
 def is_two_objects_is_the_same_objects(first: Any, second: Any) -> bool:
     """
-    If @first and @second has same type should return True
+    If @first and @second has same object should return True
     In another case should return False
     """
-    pass
+    return first is second
 
 
 def multiple_ints(first_value: int, second_value: int) -> int:
@@ -48,7 +48,12 @@ def multiple_ints(first_value: int, second_value: int) -> int:
     Returns:
         Product of elements
     """
-    pass
+
+    try: 
+        if type(first_value) == int or type(second_value) == int:
+            return first_value * second_value
+    except:
+        raise ValueError
 
 
 def multiple_ints_with_conversion(first_value: Any, second_value: Any) -> int:
@@ -78,7 +83,11 @@ def multiple_ints_with_conversion(first_value: Any, second_value: Any) -> int:
             print("Not valid input data")
         >>> "Not valid input data"
     """
-    pass
+    try:
+        product = int(first_value) * int(second_value)
+        return product
+    except (ValueError, TypeError):
+        raise ValueError("Not valid input data")
 
 
 def is_word_in_text(word: str, text: str) -> bool:
@@ -97,14 +106,15 @@ def is_word_in_text(word: str, text: str) -> bool:
         >>> False
 
     """
-    pass
+    return word in text
 
 
 def some_loop_exercise() -> list:
     """
     Use loop to create list that contain int values from 0 to 12 except 6 and 7
     """
-    pass
+    
+    return [x for x in range(0, 13) if x != 6 and x != 7]
 
 
 def remove_from_list_all_negative_numbers(data: List[int]) -> list:
@@ -116,18 +126,25 @@ def remove_from_list_all_negative_numbers(data: List[int]) -> list:
         remove_from_list_all_negative_numbers([1, 5, -7, 8, -1])
         >>> [1, 5, 8]
     """
-    pass
-
+        
+    return [x for x in data if x >= 0]    
+ 
 
 def alphabet() -> dict:
     """
-    Create dict which keys is alphabetic characters. And values their number in alphabet
+    Create dict which keys are alphabetic characters. And values their number in alphabet
     Notes You could see an implementaion of this one in test, but create another one
-    Examples:
+    Example:
         alphabet()
         >>> {"a": 1, "b": 2 ...}
     """
-    pass
+    my_dict = dict()
+    i = 0
+    for x in range(ord("a"), ord("z")+1):
+        my_dict[i+1] = chr(x)
+        i += 1
+    return my_dict
+
 
 
 def simple_sort(data: List[int]) -> List[list]:
@@ -139,4 +156,11 @@ def simple_sort(data: List[int]) -> List[list]:
     Returns:
 
     """
-    pass
+    not_sorted = True
+    while not_sorted:
+        not_sorted = False
+        for x in range(0, len(data) - 1):
+            if data[x] > data[x + 1]:
+                not_sorted = True
+                data[x], data[x + 1] =  data[x + 1], data[x]
+    return data
