@@ -1,3 +1,1 @@
-A bit more text here.
-And even more.
-And more.
+The text after reviewing than solves the conflict.
